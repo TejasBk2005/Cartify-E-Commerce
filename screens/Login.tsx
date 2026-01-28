@@ -9,7 +9,7 @@ const Login = ({ navigation }: any) => {
            
             <TextInput placeholder="Email" style={styles.input} />
             <TextInput placeholder="Password" secureTextEntry={true} style={styles.input} />
-            <TouchableOpacity style={styles.input1} onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity style={styles.input1} onPress={() => navigation.navigate('BottomTabs')}>
                 <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 18}}>Login</Text>
             </TouchableOpacity>
             

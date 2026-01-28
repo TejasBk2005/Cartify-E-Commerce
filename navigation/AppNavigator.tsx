@@ -7,19 +7,20 @@ import Home from '../screens/Home';
 import Signup from '../screens/Signup';
 import Login from '../screens/Login';
 import Account from '../screens/Account';
+import BottomTabNavigator from './Bottom_Tabs';
 
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   return (
+
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Signup">
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="BottomTabs" component={BottomTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

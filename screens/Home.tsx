@@ -1,19 +1,34 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet} from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, FlatList, Image} from "react-native";
+import { productsData } from "../data/product";
 
-const Home=({ navigation }: any) => {
-    return (   
+import Item from "../components/item";
+
+
+    
+const Home=() => {
+
+    const renderItem = ({ item }:any ) => (
+        <Item item={item} />
+    );
+
+    return (
         <View style={styles.container}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Home Screen</Text>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Account')}>
-                 <Text style={{ color: 'black', fontSize: 16 }}>Account</Text>
-            </TouchableOpacity>
-        </View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={styles.title}>PRODUCTS</Text>
+
+
+     <FlatList data={productsData}
+        keyExtractor={item => item._id.toString()}
+        renderItem={renderItem}
+        showsVerticalScrollIndicator={false}/>
+         </View>
         </View>
     );
 
 };
+
+   
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -32,6 +47,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    card: {
+        flexDirection: 'column',
+        backgroundColor: 'white',
+        padding: 20,
+        marginVertical: 5,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    image: {    
+        width: 65,
+        height: 65,
+        borderRadius: 5,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+
 });
 
 export default Home;
