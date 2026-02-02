@@ -3,11 +3,11 @@ import React,{useState, useEffect }from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { ActivityIndicator } from "react-native";
 
-import renderItem from "../components/ProductItems";
+import renderItem from "./Product_Items";
 
 
 
-const productsURL = "https://fakestoreapiserver.reactbd.org/api/walmartproducts";
+const productsURL = "https://dummyjson.com/products";
 
 const ProductList = () => {
       const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ const ProductList = () => {
     try {
         const response = await fetch (productsURL)
         const data = await response.json();
-        setData(data.data);
+        setData(data.products);
     } catch (error){
        console.log("Error fetching products:", error);
     }finally{

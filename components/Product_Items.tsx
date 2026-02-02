@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 const renderItem = ({ item } : { item: any }) => {
     return (
         <View style={styles.card}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <Image source={{ uri: item.images[0] }} style={styles.image} />
             <View style={{ flex: 1, marginLeft: 10 }}>
                 <Text style={styles.brand}>{item.brand}</Text>
                 <Text style={styles.title}>{item.title}</Text>

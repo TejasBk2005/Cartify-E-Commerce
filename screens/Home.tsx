@@ -1,54 +1,59 @@
-import React ,{useState , useEffect }from "react";
-import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
+import React , { useState } from "react";
+import { View, StyleSheet, Text, ScrollView, TextInput} from "react-native";
 
-import categoriesItems from "../components/HomeItems";
+import CategoriesList from "../components/Category_Lists";
+import { Ionicons } from "@expo/vector-icons";
+import LinearGradient from "react-native-linear-gradient";
 
 
-const homeURL = 'https://fakestoreapiserver.reactbd.org/api/categories'
 
-const CategoriesList = () => {
-    const [data , setData] = useState([]);
-    const [isLoading , setLoading] = useState(true);
 
-    const getCategories = async () => {
-       try {
-         const response = await fetch(homeURL);
-         const data = await response.json();
-         setData(data.data);
-         }catch (error){
-            console.log("Error fetching categoires", error);
-          } finally {
-            setLoading(false);
-          }
-    };
-          useEffect(() => {
-            getCategories();
-          },[]);
-          return (
-            <View style={styles.card}>
-                {isLoading ? (
-                    <ActivityIndicator />
-                ):(
-                    <FlatList 
-                    data = {data}
-                    keyExtractor={(data,index) => index.toString()} 
-                    renderItem = {categoriesItems}
-                    numColumns={2}
+const HomeScreen = () => {
+  const [search , setSearch] = useState("");
+  return (
+    <View>
+    <View style={styles.searchContainer}>
+      <Ionicons name="search" size={30}  >
+      <TextInput  placeholder="Search" value={search} onChangeText={setSearch} style={styles.searchinput}></TextInput>
+      </Ionicons>
+      </View>
+     <ScrollView style={styles.container}>
+      <CategoriesList/>
+    </ScrollView>
+   </View>
 
-                
-                    />
-                )}
-            </View>
-          
-          );
-        }
-        const styles = StyleSheet.create({
-     card:{
-        flex: 1,
-     }
+  );
+     
+  
+ };
+ export default HomeScreen;
+
+    const styles = StyleSheet.create({
+     container:{
+       padding: 5,
+       
+       
+      
+     },
+     searchContainer:{
+      padding: 20,
+      margin: -5,
+     
+      
+     },
+     searchinput: {
+      backgroundColor: "white",
+      borderRadius: 10,
+      width: "90%",
+      height: "28%",
+      
+    },
+   
+      
+    
      
 });
 
 
 
-export default CategoriesList;
+

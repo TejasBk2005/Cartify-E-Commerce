@@ -3,10 +3,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-import CategoriesList from "../screens/Home";
-import ProductList from "../screens/ProductLists";
+
+
 import CartList from "../screens/CartList";
 import Account from "../screens/Account";
+
+
+import HomeScreen from "../screens/Home";
+import ShopScreen from "../screens/Shop";
 
 
 const Tab = createBottomTabNavigator();
@@ -14,14 +18,14 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
     return (
             <Tab.Navigator >
-             <Tab.Screen name="Home" component={CategoriesList} options={{ tabBarIcon: ({ focused }) => <Ionicons name="home" size={24} color={focused ? 'skyblue' : 'gray'} /> , title: "Home", 
+             <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarIcon: ({ focused }) => <Ionicons name="home" size={24} color={focused ? 'skyblue' : 'gray'} /> , title: "HOME", 
                      headerStyle: {
                           backgroundColor: "lightblue"
                          },
                        headerTitleStyle: {
                        fontWeight: "bold", 
                        color: 'black', }}}/>
-             <Tab.Screen name="Shop" component={ProductList} options={{ tabBarIcon: ({ focused }) => <AntDesign name="shopping" size={24} color={focused ? 'skyblue' : 'gray'}/> , title: "Shop", 
+             <Tab.Screen name="Shop" component={ShopScreen} options={{ tabBarIcon: ({ focused }) => <AntDesign name="shopping" size={24} color={focused ? 'skyblue' : 'gray'}/> , title: "Shop", 
         headerStyle: {
             backgroundColor: "lightblue"
         },

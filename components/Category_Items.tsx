@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet} from "react-native";
+import { View, Text, StyleSheet, Image} from "react-native";
 
 
 const categoriesItems = ({ item }:{ item : any }) => {
    return (
     <View style = {styles.card}>
-        <Text style={styles.catname}>{item.name}</Text>
+         
+        <Text style={styles.brand}>{item.name}</Text>
     </View>
     
    );
@@ -20,15 +21,19 @@ card: {
     margin: 10,
     backgroundColor: "lightgray",
     justifyContent: "center",
-    alignContent: "center"
+    alignContent: "center",
+    textAlign: "center",
+    borderRadius: 30,
+    height: 100,
+    width: 100
     
 },
-catname: {
+brand: {
+    flex:1,
     textAlign: "center",
+    padding: -10,
+    margin: 20,
 },
-id:{
-
-}
 
 });
 
