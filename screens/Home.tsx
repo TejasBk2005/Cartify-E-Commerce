@@ -1,70 +1,54 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, FlatList, Image} from "react-native";
-import { productsData } from "../data/product";
+import React ,{useState , useEffect }from "react";
+import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
 
-import Item from "../components/item";
-
-
-    
-const Home=() => {
-
-    const renderItem = ({ item }:any ) => (
-        <Item item={item} />
-    );
-
-    return (
-        <View style={styles.container}>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={styles.title}>PRODUCTS</Text>
+import categoriesItems from "../components/HomeItems";
 
 
-     <FlatList data={productsData}
-        keyExtractor={item => item._id.toString()}
-        renderItem={renderItem}
-        showsVerticalScrollIndicator={false}/>
-         </View>
-        </View>
-    );
+const homeURL = 'https://fakestoreapiserver.reactbd.org/api/categories'
 
-};
+const CategoriesList = () => {
+    const [data , setData] = useState([]);
+    const [isLoading , setLoading] = useState(true);
 
-   
-const styles = StyleSheet.create({
-    container: {
+    const getCategories = async () => {
+       try {
+         const response = await fetch(homeURL);
+         const data = await response.json();
+         setData(data.data);
+         }catch (error){
+            console.log("Error fetching categoires", error);
+          } finally {
+            setLoading(false);
+          }
+    };
+          useEffect(() => {
+            getCategories();
+          },[]);
+          return (
+            <View style={styles.card}>
+                {isLoading ? (
+                    <ActivityIndicator />
+                ):(
+                    <FlatList 
+                    data = {data}
+                    keyExtractor={(data,index) => index.toString()} 
+                    renderItem = {categoriesItems}
+                    numColumns={2}
+
+                
+                    />
+                )}
+            </View>
+          
+          );
+        }
+        const styles = StyleSheet.create({
+     card:{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'lightgray',
-    },
-    button: {
-        flex : 0,
-        marginBottom: 100,
-        padding: 10,
-        backgroundColor: 'skyblue',
-        borderRadius: 15,
-        bottom: -10,
-        width: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    card: {
-        flexDirection: 'column',
-        backgroundColor: 'white',
-        padding: 20,
-        marginVertical: 5,
-        borderRadius: 5,
-        alignItems: 'center',
-    },
-    image: {    
-        width: 65,
-        height: 65,
-        borderRadius: 5,
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-
+     }
+     
 });
 
-export default Home;
+
+
+export default CategoriesList;
