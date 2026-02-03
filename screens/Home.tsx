@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, ScrollView, TextInput} from "react-native";
 
 import CategoriesList from "../components/Category_Lists";
 import { Ionicons } from "@expo/vector-icons";
-import LinearGradient from "react-native-linear-gradient";
+
 
 
 
@@ -11,7 +11,7 @@ import LinearGradient from "react-native-linear-gradient";
 const HomeScreen = () => {
   const [search , setSearch] = useState("");
   return (
-    <View>
+    <View style={styles.s1}>
     <View style={styles.searchContainer}>
       <Ionicons name="search" size={30}  >
       <TextInput  placeholder="Search" value={search} onChangeText={setSearch} style={styles.searchinput}></TextInput>
@@ -19,9 +19,10 @@ const HomeScreen = () => {
       </View>
      <ScrollView style={styles.container}>
       <CategoriesList/>
+    
     </ScrollView>
    </View>
-
+  
   );
      
   
@@ -31,6 +32,7 @@ const HomeScreen = () => {
     const styles = StyleSheet.create({
      container:{
        padding: 5,
+       flex: 1,
        
        
       
@@ -48,6 +50,9 @@ const HomeScreen = () => {
       height: "28%",
       
     },
+    s1:{
+      flex: 1,
+    }
    
       
     

@@ -7,8 +7,7 @@ import ProductList from "../components/Product_Lists";
 
 const ShopScreen = () => {
   return (
-    
- <ProductList/>
+    <ProductList/>
    );
      
   

@@ -7,10 +7,16 @@ import { ScrollView } from "react-native";
 
 
 const homeURL = 'https://dummyjson.com/products/categories'
+const ITEMS_PER_LOAD = 6;
 
 const CategoriesList = () => {
     const [data , setData] = useState([]);
     const [isLoading , setLoading] = useState(true);
+    const [visibleItem , setvisibleItem] = useState(ITEMS_PER_LOAD);
+    const totalItems = homeURL.length;
+    
+
+   
 
     const getCategories = async () => {
        try {
@@ -26,26 +32,35 @@ const CategoriesList = () => {
           useEffect(() => {
             getCategories();
           },[]);
+
+        const handleShowMore = () => {
+          setvisibleItem(prevVisibleItems =>
+            Math.min(prevVisibleItems + ITEMS_PER_LOAD + totalItems )
+          )
+        }
+
           return (
-            <ScrollView style={styles.card}>
+            <View style={styles.card}>
                 {isLoading ? (
                     <ActivityIndicator />
                 ):(
+                  <View style={styles.card}>
                     <FlatList 
                     data = {data}
                     keyExtractor={(data,index) => index.toString()} 
                     renderItem = {categoriesItems}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
+                    numColumns={3}
+                    
                     />
+                    </View>
                 )}
-            </ScrollView>
+            </View>
           
           );
         }
         const styles = StyleSheet.create({
      card:{
-        flex: 0,
+        flex: 1,
      }
      
 });
