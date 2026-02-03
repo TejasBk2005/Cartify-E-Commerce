@@ -14,7 +14,7 @@ const Login = ({ navigation }: any) => {
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.button}>
-                 <Text style={styles.skip1} onPress={() => navigation.navigate("BottomTab")}> Skip </Text>
+                 <Text style={styles.skip1} onPress={() => navigation.navigate("Cartify")}> Skip▶ </Text>
             </TouchableOpacity>
         </View>
         </View>
@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
      button :{
-        left : 160,
+        left : 170,
         bottom: 550,
-        backgroundColor:"skyblue",
+        backgroundColor:"white",
         justifyContent:"center",
-        borderRadius: 5,
-        width: 55,
+        borderRadius: 25,
+        width: 65,
         height: "3.3%"
        
      },
@@ -60,7 +60,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "black",
         fontWeight: "bold",
-        textDecorationLine: "underline",
+        justifyContent: "center",
+        alignItems: "center"
+       
+      
       },
   
 });

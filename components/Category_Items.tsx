@@ -13,41 +13,37 @@ const categoriesItems = ({ item }:{ item : any }) => {
     )}
        <Text style={styles.name}>{item.name}</Text>
       </View>
-      
-
-         
- 
-    
-   );
+    );
 };
 
 const styles = StyleSheet.create({
   
 card: {
     //flexDirection:"column",
-    flex: 1,
-    padding: 10,
-    margin: 10,
+    flex: 0,
+    padding: 5,
+    margin: 20,
+    marginLeft: 50,
     backgroundColor: "white",
-    shadowColor: "black",
+    shadowColor: "skyblue",
     shadowOffset: { width: 10 , height: 0},
     shadowOpacity: 0.25,
     shadowRadius: 0.25,
     elevation: 10,
-    borderRadius: 10,
-    height: 55 ,
-    width: 55,
+    borderRadius: 100,
+    height : 60,
+    width: 60,
     alignItems: "center",
     justifyContent: "center"
     
 },
 
 name: {
-   padding: 1,
-   textAlign: "auto",
-   justifyContent: "space-between",
-   alignItems: "center",
-   fontSize: 12,
+   padding: 0,
+   textAlign: "center",
+    alignItems: "center",
+   fontSize: 10,
+
 },
 
 

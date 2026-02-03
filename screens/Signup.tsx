@@ -28,7 +28,7 @@ const SignUp = ({ navigation }: any) => {
             
            
              <TouchableOpacity style={styles.button}>
-                <Text style={styles.skip1} onPress={() => navigation.navigate('Login')}>Skip </Text>
+                <Text style={styles.skip1} onPress={() => navigation.navigate('Login')}>Skip▶ </Text>
              </TouchableOpacity>
         </View>
         </View>
@@ -65,26 +65,27 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         padding: 10,
         marginVertical: 5,
-        borderRadius: 10,
+        borderRadius: 25,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
     },
     button :{
-        left : 160,
+        left : 170,
         bottom: 620,
-        backgroundColor:"skyblue",
-        width: "15%",
+        backgroundColor:"white",
+        width: "17%",
         height: "3.3%",
         justifyContent:"center",
-        borderRadius: 5,
+        borderRadius: 25,
     },
     skip1 :{
         textAlign: "center",
         fontSize: 20,
         fontWeight: "bold",
         color: "black",
-        textDecorationLine: "underline"
+        alignItems: "center",
+        justifyContent: "center"
     }
  });
 

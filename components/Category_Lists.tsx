@@ -1,23 +1,17 @@
 import React ,{useState , useEffect }from "react";
-import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
+import { View, StyleSheet, FlatList, ActivityIndicator, TouchableOpacity , Text} from "react-native";
 
 import categoriesItems from "./Category_Items";
-import { ScrollView } from "react-native";
 
 
 
 const homeURL = 'https://dummyjson.com/products/categories'
-const ITEMS_PER_LOAD = 6;
 
 const CategoriesList = () => {
     const [data , setData] = useState([]);
     const [isLoading , setLoading] = useState(true);
-    const [visibleItem , setvisibleItem] = useState(ITEMS_PER_LOAD);
-    const totalItems = homeURL.length;
+    const [showAll , setshowAll] = useState(false);
     
-
-   
-
     const getCategories = async () => {
        try {
          const response = await fetch(homeURL);
@@ -33,11 +27,10 @@ const CategoriesList = () => {
             getCategories();
           },[]);
 
-        const handleShowMore = () => {
-          setvisibleItem(prevVisibleItems =>
-            Math.min(prevVisibleItems + ITEMS_PER_LOAD + totalItems )
-          )
-        }
+
+          const visibleData = showAll ? data:data.slice(0 , 6);
+
+       
 
           return (
             <View style={styles.card}>
@@ -46,12 +39,20 @@ const CategoriesList = () => {
                 ):(
                   <View style={styles.card}>
                     <FlatList 
-                    data = {data}
+                    data = {visibleData}
                     keyExtractor={(data,index) => index.toString()} 
                     renderItem = {categoriesItems}
                     numColumns={3}
-                    
-                    />
+                    showsVerticalScrollIndicator = {false}
+                  
+                  />
+                   
+                    {data.length > 6 && (
+                      <TouchableOpacity  onPress={() => setshowAll(!showAll)} style={styles.buttonShow}>
+                        <Text style={styles.buttonText}>{showAll ? "Show less" : "Show more"}</Text>
+                      </TouchableOpacity>
+                    )
+                     }
                     </View>
                 )}
             </View>
@@ -61,7 +62,22 @@ const CategoriesList = () => {
         const styles = StyleSheet.create({
      card:{
         flex: 1,
-     }
+      },
+      buttonShow: {
+        alignItems: "center",
+        backgroundColor: "skyblue",
+        width: 80,
+        height: 35,
+        borderRadius: 25,
+        textAlign: "center",
+        justifyContent: "center",
+        left: 170
+      },
+      buttonText: {
+        fontSize: 16,
+        color: "black",
+        fontWeight: "600"
+      }
      
 });
 
