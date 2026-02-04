@@ -65,7 +65,7 @@ const CategoriesList = () => {
       },
       buttonShow: {
         alignItems: "center",
-        backgroundColor: "skyblue",
+        backgroundColor: "lightgray",
         width: 80,
         height: 35,
         borderRadius: 25,
@@ -76,7 +76,7 @@ const CategoriesList = () => {
       buttonText: {
         fontSize: 16,
         color: "black",
-        fontWeight: "600"
+        fontWeight: "bold"
       }
      
 });
