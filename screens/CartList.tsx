@@ -1,16 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet}  from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-
-const cartURL = 'https://fakestoreapiserver.reactbd.org/api/carts';
+const cartURL = "https://fakestoreapiserver.reactbd.org/api/carts";
 
 const CartList = () => {
-   return(<View></View>)
-
-
-
-}
- 
-
+  return <View></View>;
+};
 
 export default CartList;

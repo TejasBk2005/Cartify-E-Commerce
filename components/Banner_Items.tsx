@@ -1,58 +1,40 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Image} from "react-native";
-
+import { View, StyleSheet } from "react-native";
+import ImageSlider from "react-native-image-slider";
 
 const BannerData = [
-       { 
-        id : "01",
-        image : require("../assets/Banner1.jpg"),
-       },
-       { 
-        id : "02",
-        image : require("../assets/Banner2.jpg"),
-       },
-        { 
-        id : "03",
-        image : require("../assets/Banner3.jpg"),
-        },
-        { 
-        id : "04",
-        image : require("../assets/Banner4.jpg"),
-        },
-       ]
+  require("../assets/Banner1.jpg"),
+  require("../assets/Banner2.jpg"),
+  require("../assets/Banner3.jpg"),
+  require("../assets/Banner4.jpg"),
+];
 
-
-    const CarouselBanner=()=> {
-        const renderItem = ({item, index}: {item: typeof BannerData[0]; index: number}) => {
-            return(
-            <View style={styles.card}>
-                <Image source={item.image} style={{ height:150, width: 300}} />
-                </View>
-        )};
-        
-     return (
-    
-    <FlatList 
-     data = {BannerData}
-     renderItem={renderItem}
-     horizontal={true}
-
-     />
-     
-     )}
-
-
-
-
+const CarouselBanner = () => {
+  return (
+    <View style={styles.banner}>
+      <ImageSlider
+        style={styles.bannercard}
+        loopBothSides
+        autoTimerInterval={300}
+        images={BannerData}
+      ></ImageSlider>
+    </View>
+  );
+};
 
 export default CarouselBanner;
 
-
 const styles = StyleSheet.create({
-    card: {
-        flex:1,
-        height: 150,
-        width: 300,
-    }
-
-})
+  banner: {
+    flex: 1,
+    alignItems: "center",
+    textAlign: "center",
+    width: 500,
+  },
+  bannercard: {
+    height: 200,
+    width: 390,
+    borderRadius: 15,
+    right: 25,
+  },
+});
