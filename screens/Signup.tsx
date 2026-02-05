@@ -17,7 +17,7 @@ const SignUp = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/CARTIFY2.png")}
+        source={require("../assets/logo.jpg")}
         style={{
           width: 70,
           height: 70,

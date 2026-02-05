@@ -12,8 +12,13 @@ const Login = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/CARTIFY2.png")}
-        style={{ width: 70, height: 70, bottom: -250, borderRadius: 20 }}
+        source={require("../assets/logo.jpg")}
+        style={{
+          width: 70,
+          height: 70,
+          bottom: -250,
+          borderRadius: 20,
+        }}
       />
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <TextInput placeholder="Email" style={styles.input} />
