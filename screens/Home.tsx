@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     width: 360,
     left: -10,
     margin: 15,
-    marginBottom: 50,
+    marginBottom: 60,
   },
   s1: {
     flex: 1,
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
   },
   iconsList: {
     margin: 10,
-    borderRadius: 20,
+    borderRadius: 25,
   },
 });

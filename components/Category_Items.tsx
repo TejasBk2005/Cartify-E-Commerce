@@ -19,9 +19,10 @@ const styles = StyleSheet.create({
   card: {
     //flexDirection:"column",
     flex: 0,
-    padding: 5,
-    margin: 15,
-    marginLeft: 50,
+    padding: -10,
+    margin: 3,
+    marginLeft: 35,
+    marginBottom: 30,
     backgroundColor: "white",
     shadowColor: "skyblue",
     shadowOffset: { width: 10, height: 0 },
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignItems: "center",
     justifyContent: "center",
-    right: 17,
+    right: 15,
   },
 
   name: {

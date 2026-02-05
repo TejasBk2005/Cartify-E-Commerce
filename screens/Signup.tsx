@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input1: {
-    backgroundColor: "skblue",
+    backgroundColor: "skyblue",
     padding: 10,
     marginVertical: 5,
     borderRadius: 25,

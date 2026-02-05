@@ -32,7 +32,7 @@ const CategoriesList = () => {
     getCategories();
   }, []);
 
-  const visibleData = showAll ? data : data.slice(0, 6);
+  const visibleData = showAll ? data : data.slice(0, 8);
 
   return (
     <View style={styles.card}>
@@ -44,11 +44,11 @@ const CategoriesList = () => {
             data={visibleData}
             keyExtractor={(data, index) => index.toString()}
             renderItem={categoriesItems}
-            numColumns={3}
+            numColumns={4}
             showsVerticalScrollIndicator={false}
           />
 
-          {data.length > 6 && (
+          {data.length > 8 && (
             <TouchableOpacity
               onPress={() => setshowAll(!showAll)}
               style={styles.buttonShow}
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
     backgroundColor: "#ececec",
-    borderRadius: 15,
+    borderRadius: 25,
   },
   buttonShow: {
     flex: 0,

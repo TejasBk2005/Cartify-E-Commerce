@@ -14,8 +14,7 @@ const CarouselBanner = () => {
     <View style={styles.banner}>
       <ImageSlider
         style={styles.bannercard}
-        loopBothSides
-        autoTimerInterval={300}
+        autoPlayWithInterval={7000}
         images={BannerData}
       ></ImageSlider>
     </View>

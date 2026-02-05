@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 import ProductList from "../components/Product_Lists";
 
