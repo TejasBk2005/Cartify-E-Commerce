@@ -1,50 +1,51 @@
+import { Link } from "@react-navigation/native";
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 const renderItem = ({ item }: { item: any }) => {
   return (
-    <View style={styles.card}>
-      <Image source={{ uri: item.images[0] }} style={styles.image} />
-      <View style={{ flex: 1, marginLeft: 10 }}>
-        <Text style={styles.brand}>{item.brand}</Text>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.price}>
-          {"\u20B9"} {item.price}
-        </Text>
+    <Link screen="ProductDetails" params={{ productId: item.id }}>
+      <View style={styles.card}>
+        <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
+        <View style={{ flex: 1, marginLeft: 15 }}>
+          <Text style={styles.brand}>{item.brand}</Text>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.price}>
+            {"\u20B9"} {item.price}
+          </Text>
+        </View>
       </View>
-    </View>
+    </Link>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "gray",
-  },
   card: {
-    flexDirection: "column",
-    padding: 5,
-    margin: 15,
-    backgroundColor: "#fff",
+    flex: 1,
+    padding: 10,
+    margin: 5,
+    backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    width: 170,
-    left: -5,
+    width: 220,
+    height: 300,
+    marginBottom: 25,
   },
-  image: {
-    width: 130,
-    height: 100,
-    borderRadius: 15,
-    flex: 1,
+  thumbnail: {
+    width: 120,
+    height: 120,
+    borderRadius: 5,
+    flex: 0,
     alignSelf: "center",
+    justifyContent: "center",
   },
 
   brand: {
-    flex: 1,
-    padding: 10,
+    padding: 5,
     fontSize: 17,
     textAlign: "center",
     fontWeight: "400",

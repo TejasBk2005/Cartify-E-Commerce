@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { ActivityIndicator } from "react-native";
 
 import renderItem from "./Product_Items";
@@ -27,7 +27,7 @@ const ProductList = () => {
   }, []);
 
   return (
-    <View style={styles.card}>
+    <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
@@ -37,6 +37,10 @@ const ProductList = () => {
           renderItem={renderItem}
           numColumns={2}
           contentContainerStyle={{ padding: 10 }}
+          columnWrapperStyle={{
+            justifyContent: "space-around",
+            marginBottom: 10,
+          }}
         />
       )}
     </View>
@@ -44,8 +48,13 @@ const ProductList = () => {
 };
 
 const styles = StyleSheet.create({
-  card: {
+  container: {
     flex: 1,
+    padding: 10,
+    left: -1,
+    margin: -10,
+    marginTop: 5,
+    marginBottom: 1,
   },
 });
 

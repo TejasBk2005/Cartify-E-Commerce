@@ -12,10 +12,7 @@ const Login = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{
-          uri:
-            "https://m.media-amazon.com/images/I/410FxmB6zCL._AC_UF350,350_QL80_.jpg",
-        }}
+        source={require("../assets/logo.jpg")}
         style={{
           width: 70,
           height: 70,

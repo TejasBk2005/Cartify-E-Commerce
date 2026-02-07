@@ -6,7 +6,7 @@ import Signup from "../screens/Signup";
 import Login from "../screens/Login";
 import BottomTabNavigator from "./Bottom_Tabs";
 import searchItems from "../components/Search_Items";
-import productDetails from "../components/Product_Details";
+import ProductDetails from "../components/Product_Details";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cartify" component={BottomTabNavigator} />
         <Stack.Screen name="Search" component={searchItems} />
-        <Stack.Screen name="Details" component={productDetails} />
+        <Stack.Screen name="ProductDetails" component={ProductDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
