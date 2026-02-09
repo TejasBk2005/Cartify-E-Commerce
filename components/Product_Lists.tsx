@@ -39,7 +39,7 @@ const ProductList = () => {
           contentContainerStyle={{ padding: 10 }}
           columnWrapperStyle={{
             justifyContent: "space-around",
-            marginBottom: 10,
+            marginBottom: 30,
           }}
         />
       )}

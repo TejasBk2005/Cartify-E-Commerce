@@ -1,10 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const detailsrenderItem = ({ item }: { item: any }) => {
   return (
     <View style={styles.detailsContainer}>
-      <Image source={{ uri: item.thumbnail }} style={styles.image} />
+      <Image source={{ uri: item.images[0] }} style={styles.image} />
+
+      <Text style={styles.rating}>
+        {item.rating}
+
+        <Ionicons name="star" size={15} color="green" />
+      </Text>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.brand}>{item.brand}</Text>
       <Text style={styles.price}>
@@ -22,14 +29,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   detailsContainer: {
-    flex: 0,
+    flex: 1,
     backgroundColor: "white",
-    padding: 20,
+    padding: 8,
     height: 1000,
   },
   image: {
     width: "100%",
-    height: 320,
+    height: 350,
     borderRadius: 1,
     marginBottom: 20,
     backgroundColor: "#ececec",
@@ -60,6 +67,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "green",
     marginBottom: 10,
+  },
+  rating: {
+    textAlign: "left",
+    fontSize: 15,
+    backgroundColor: "white",
+    width: 50,
+    padding: 5,
+    borderRadius: 5,
+    bottom: 53,
+    left: 5,
   },
 });
 

@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { Link } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
@@ -7,13 +8,18 @@ const renderItem = ({ item }: { item: any }) => {
     <Link screen="ProductDetails" params={{ productId: item.id }}>
       <View style={styles.card}>
         <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
-        <View style={{ flex: 1, marginLeft: 15 }}>
-          <Text style={styles.brand}>{item.brand}</Text>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.price}>
-            {"\u20B9"} {item.price}
-          </Text>
-        </View>
+        <TouchableOpacity style={styles.heartbtn}>
+          <Ionicons name="heart-outline" size={22} color="gray"></Ionicons>
+        </TouchableOpacity>
+        <Text style={styles.rating}>
+          {item.rating}
+          <Ionicons name="star" size={14} color="green" />
+        </Text>
+        <Text style={styles.brand}>{item.brand}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.price}>
+          {"\u20B9"} {item.price}
+        </Text>
       </View>
     </Link>
   );
@@ -21,9 +27,9 @@ const renderItem = ({ item }: { item: any }) => {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
-    padding: 10,
-    margin: 5,
+    flex: 0,
+    padding: 5,
+
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
@@ -32,20 +38,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     width: 220,
-    height: 300,
-    marginBottom: 25,
+    height: 350,
+    marginBottom: 20,
   },
   thumbnail: {
-    width: 120,
-    height: 120,
-    borderRadius: 5,
+    width: 170,
+    height: 170,
+    borderRadius: 10,
     flex: 0,
     alignSelf: "center",
     justifyContent: "center",
+    backgroundColor: "#ececec",
+    marginBottom: -20,
   },
 
   brand: {
-    padding: 5,
     fontSize: 17,
     textAlign: "center",
     fontWeight: "400",
@@ -57,9 +64,31 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    padding: -30,
     textAlign: "left",
     fontSize: 15,
     fontWeight: "400",
+  },
+  rating: {
+    textAlign: "left",
+    fontSize: 12,
+    backgroundColor: "white",
+    width: 45,
+    padding: 5,
+    borderRadius: 5,
+    bottom: 10,
+    left: 2,
+  },
+  heartbtn: {
+    position: "absolute",
+    bottom: 245,
+    left: 140,
+    backgroundColor: "lightgray",
+    width: 28,
+    height: 28,
+    borderRadius: 100,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 export default renderItem;
