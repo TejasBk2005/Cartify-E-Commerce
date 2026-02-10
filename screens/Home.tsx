@@ -9,7 +9,7 @@ const HomeScreen = ({ navigation }: any) => {
   return (
     <View style={styles.s1}>
       <View style={styles.searchContainer}>
-        <Ionicons name="search" size={28} color="white">
+        <Ionicons name="search" size={28} color="black">
           <TextInput
             placeholder="Search"
             onPress={() => navigation.navigate("Search")}
@@ -40,6 +40,9 @@ const styles = StyleSheet.create({
   searchinput: {
     backgroundColor: "white",
     borderRadius: 10,
+    borderStyle: "solid",
+    borderColor: "black",
+    borderWidth: 1,
     width: "90%",
     //height: "26.5%",
   },

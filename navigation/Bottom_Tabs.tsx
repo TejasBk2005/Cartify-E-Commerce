@@ -1,17 +1,20 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-import CartList from "../screens/CartList";
 import Account from "../screens/Account";
 
 import HomeScreen from "../screens/Home";
 import ShopScreen from "../screens/Shop";
 
+import searchItems from "../components/Search_Items";
+
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+  const navigation = useNavigation<any>();
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
@@ -31,6 +34,8 @@ const BottomTabNavigator = () => {
         name="Shop"
         component={ShopScreen}
         options={{
+          headerShown: false,
+
           tabBarIcon: ({ focused }) => (
             <AntDesign
               name="shopping"
@@ -41,12 +46,12 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Cart"
-        component={CartList}
+        name="Search"
+        component={searchItems}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name="cart"
+              name="search"
               size={24}
               color={focused ? "skyblue" : "gray"}
             />
