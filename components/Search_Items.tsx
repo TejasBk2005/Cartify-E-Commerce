@@ -23,19 +23,22 @@ const searchItems = () => {
 export default searchItems;
 const styles = StyleSheet.create({
   container: {
-    padding: 1,
+    padding: 10,
     flex: 1,
   },
   searchContainer: {
-    padding: 10,
+    padding: 20,
     marginLeft: -5,
   },
   searchinput: {
     backgroundColor: "white",
     paddingLeft: 10,
     borderRadius: 10,
+    borderStyle: "solid",
+    borderColor: "black",
+    borderWidth: 1,
     width: "90%",
-    height: "24%",
+    height: 50,
   },
   s1: {
     flex: 1,

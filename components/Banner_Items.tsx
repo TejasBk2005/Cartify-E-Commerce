@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     height: 200,
     left: 50,
     marginBottom: 10,
+    marginLeft: 1,
   },
   bannercard: {
     height: 200,

@@ -9,13 +9,18 @@ const HomeScreen = ({ navigation }: any) => {
   return (
     <View style={styles.s1}>
       <View style={styles.searchContainer}>
-        <Ionicons name="search" size={28} color="black">
-          <TextInput
-            placeholder="Search"
-            onPress={() => navigation.navigate("Search")}
-            style={styles.searchinput}
-          ></TextInput>
-        </Ionicons>
+        <TextInput
+          placeholder="Search"
+          onPress={() => navigation.navigate("Search")}
+          style={styles.searchinput}
+        >
+          <Ionicons
+            name="search"
+            size={28}
+            color="black"
+            style={{ position: "absolute", left: 10, top: 8 }}
+          />
+        </TextInput>
       </View>
       <View style={styles.bannerCard}>
         <CarouselBanner />
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: "black",
     borderWidth: 1,
-    width: "90%",
+    width: "100%",
     //height: "26.5%",
   },
   bannerCard: {
