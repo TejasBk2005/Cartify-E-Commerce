@@ -21,9 +21,7 @@ const ProductItem = ({ item }: { item: any }) => {
     setLiked(exists);
   };
 
-  const toggleWishList = async (e: any) => {
-    e.preventDefault();
-
+  const toggleWishList = async () => {
     if (liked) {
       await removeWishList(item.id);
       setLiked(false);
