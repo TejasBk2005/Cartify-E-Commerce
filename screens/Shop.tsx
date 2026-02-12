@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 
-import ProductList from "../components/Product_Lists";
+import ProductList from "../components/Product_API";
 
 const ShopScreen = () => {
   return <ProductList />;

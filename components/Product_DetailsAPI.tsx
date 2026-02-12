@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { ActivityIndicator } from "react-native";
 import { FlatList } from "react-native";
-import detailsrenderItem from "./ProductDetails_Items";
+import detailsrenderItem from "./ProductDetails_Display";
 
 const productDetailsURL = "https://dummyjson.com/products/";
 

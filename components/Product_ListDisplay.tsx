@@ -1,22 +1,59 @@
+import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "@react-navigation/native";
-import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const renderItem = ({ item }: { item: any }) => {
+import {
+  addToWishList,
+  removeWishList,
+  isInWishList,
+} from "../Utils/Wish_List";
+
+const ProductItem = ({ item }: { item: any }) => {
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    checkWishList();
+  }, []);
+
+  const checkWishList = async () => {
+    const exists = await isInWishList(item.id);
+    setLiked(exists);
+  };
+
+  const toggleWishList = async (e: any) => {
+    e.preventDefault();
+
+    if (liked) {
+      await removeWishList(item.id);
+      setLiked(false);
+    } else {
+      await addToWishList(item);
+      setLiked(true);
+    }
+  };
+
   return (
     <Link screen="ProductDetails" params={{ productId: item.id }}>
       <View style={styles.card}>
         <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
-        <TouchableOpacity style={styles.heartbtn}>
-          <Ionicons name="heart-outline" size={22} color="gray"></Ionicons>
+
+        <TouchableOpacity style={styles.heartbtn} onPress={toggleWishList}>
+          <Ionicons
+            name={liked ? "heart" : "heart-outline"}
+            size={22}
+            color={liked ? "red" : "gray"}
+          />
         </TouchableOpacity>
+
         <Text style={styles.rating}>
           {item.rating}
           <Ionicons name="star" size={14} color="green" />
         </Text>
+
         <Text style={styles.brand}>{item.brand}</Text>
         <Text style={styles.title}>{item.title}</Text>
+
         <Text style={styles.price}>
           {"\u20B9"} {item.price}
         </Text>
@@ -90,4 +127,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-export default renderItem;
+export default ProductItem;

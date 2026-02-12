@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { ActivityIndicator } from "react-native";
 
-import productRenderItem from "./Product_Items";
+import ProductItem from "./Product_ListDisplay";
 
 const productsURL = "https://dummyjson.com/products";
 
@@ -34,7 +34,7 @@ const ProductList = () => {
         <FlatList
           data={data}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={productRenderItem}
+          renderItem={({ item }) => <ProductItem item={item} />}
           numColumns={2}
           contentContainerStyle={{ padding: 10 }}
           columnWrapperStyle={{

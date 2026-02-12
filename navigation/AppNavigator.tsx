@@ -9,8 +9,8 @@ import Signup from "../screens/Signup";
 import Login from "../screens/Login";
 import BottomTabNavigator from "./Bottom_Tabs";
 import searchItems from "../components/Search_Items";
-import ProductDetails from "../components/Product_Details";
-import wishlistList from "../components/WishList_Lists";
+import ProductDetails from "../components/Product_DetailsAPI";
+import wishlistList from "../components/WishList_Display";
 import CartList from "../screens/CartList";
 
 const Stack = createNativeStackNavigator();
@@ -31,6 +31,15 @@ const AppNavigator = () => {
           component={BottomTabNavigator}
           options={({ navigation }) => ({
             title: "Cartify",
+            headerStyle: {
+              backgroundColor: "skyblue",
+            },
+            headerTintColor: "black",
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 25,
+            },
+
             headerRight: () => (
               <View style={{ flexDirection: "row", gap: 20 }}>
                 <TouchableOpacity
