@@ -1,24 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { addToCart } from "../Utils/Cart_List";
 
 const detailsrenderItem = ({ item }: { item: any }) => {
   return (
     <View style={styles.detailsContainer}>
       <Image source={{ uri: item.images[0] }} style={styles.image} />
-      <TouchableOpacity style={styles.heartbtn}>
-        <Ionicons
-          name="heart-outline"
-          size={30}
-          color="gray"
-          style={{ position: "absolute", top: 20, right: 20 }}
-        />
-      </TouchableOpacity>
 
       <Text style={styles.rating}>
         {item.rating}
 
-        <Ionicons name="star" size={15} color="green" />
+        <Ionicons name="star" size={16} color="green" />
       </Text>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.brand}>{item.brand}</Text>
@@ -27,8 +20,19 @@ const detailsrenderItem = ({ item }: { item: any }) => {
       </Text>
       <Text style={styles.availability}>{item.availabilityStatus}</Text>
       <Text style={styles.description}>{item.description}</Text>
-      <TouchableOpacity style={styles.addToCartBtn}>
-        <Text>Add to Cart</Text>
+      <TouchableOpacity
+        style={styles.addToCartBtn}
+        onPress={async () => {
+          await addToCart({
+            id: item.id,
+            title: item.title,
+            brand: item.brand,
+            price: item.price,
+            thumbnail: item.images[0],
+          });
+        }}
+      >
+        <Text>Add to cart</Text>
       </TouchableOpacity>
     </View>
   );
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     padding: 15,
-    height: 1000,
+    height: 850,
   },
   image: {
     width: "100%",
@@ -76,19 +80,19 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   description: {
-    fontSize: 16,
+    fontSize: 18,
     color: "gray",
   },
   availability: {
-    fontSize: 16,
+    fontSize: 17,
     color: "green",
     marginBottom: 10,
   },
   rating: {
     textAlign: "left",
-    fontSize: 15,
+    fontSize: 18,
     backgroundColor: "white",
-    width: 50,
+    width: 55,
     padding: 5,
     borderRadius: 10,
     bottom: 35,
@@ -106,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
     justifyContent: "center",
-    top: 300,
+    top: 50,
   },
 });
 

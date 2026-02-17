@@ -11,7 +11,8 @@ import BottomTabNavigator from "./Bottom_Tabs";
 import searchItems from "../components/Search_Items";
 import ProductDetails from "../components/Product_DetailsAPI";
 import wishlistList from "../components/WishList_Display";
-import CartList from "../screens/CartList";
+
+import CartDisplay from "../components/Cart_display";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,9 +48,7 @@ const AppNavigator = () => {
                 >
                   <Ionicons name="heart-outline" size={28} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("CartList")}
-                >
+                <TouchableOpacity onPress={() => navigation.navigate("Carts")}>
                   <Ionicons name="cart-outline" size={28} color="black" />
                 </TouchableOpacity>
               </View>
@@ -59,7 +58,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Search" component={searchItems} />
         <Stack.Screen name="ProductDetails" component={ProductDetails} />
         <Stack.Screen name="Wishlist" component={wishlistList} />
-        <Stack.Screen name="CartList" component={CartList} />
+        <Stack.Screen name="Carts" component={CartDisplay} />
       </Stack.Navigator>
     </NavigationContainer>
   );

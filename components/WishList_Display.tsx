@@ -10,6 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { getWishList, removeWishList } from "../Utils/Wish_List";
+import { addToCart } from "../Utils/Cart_List";
 
 const WishScreen = () => {
   const navigation = useNavigation<any>();
@@ -63,10 +64,24 @@ const WishScreen = () => {
                 </View>
 
                 <TouchableOpacity
-                  style={styles.heartBtn}
+                  style={styles.removeBtn}
                   onPress={() => removeItem(item.id)}
                 >
-                  <Ionicons name="heart" size={24} color="red" />
+                  <Ionicons name="close-outline" size={24} color="black" />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.addtocart}
+                  onPress={async () => {
+                    await addToCart({
+                      id: item.id,
+                      title: item.title,
+                      brand: item.brand,
+                      price: item.price,
+                      thumbnail: item.images[0],
+                    });
+                  }}
+                >
+                  <Text style={{ textAlign: "center" }}>Add to cart</Text>
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
@@ -101,22 +116,25 @@ const styles = StyleSheet.create({
   },
 
   brand: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: "500",
   },
 
   title: {
-    fontSize: 13,
+    fontSize: 15,
     color: "gray",
   },
 
   price: {
+    fontSize: 15,
     fontWeight: "bold",
     marginTop: 5,
   },
 
-  heartBtn: {
+  removeBtn: {
     padding: 5,
+    bottom: 35,
+    left: 90,
   },
 
   emptyContainer: {
@@ -129,6 +147,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     color: "gray",
+  },
+
+  addtocart: {
+    width: 80,
+    height: 30,
+    borderStyle: "solid",
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 10,
+    justifyContent: "center",
+    marginTop: 30,
   },
 });
 
