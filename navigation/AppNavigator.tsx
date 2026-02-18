@@ -56,7 +56,29 @@ const AppNavigator = () => {
           })}
         />
         <Stack.Screen name="Search" component={searchItems} />
-        <Stack.Screen name="ProductDetails" component={ProductDetails} />
+        <Stack.Screen
+          name="ProductDetails"
+          component={ProductDetails}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <View style={{ flexDirection: "row", gap: 20 }}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Wishlist")}
+                >
+                  <Ionicons name="heart-outline" size={28} color="black" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Carts")}>
+                  <Ionicons
+                    name="cart-outline"
+                    size={28}
+                    color="black"
+                  ></Ionicons>
+                </TouchableOpacity>
+              </View>
+            ),
+          })}
+        />
+
         <Stack.Screen name="Wishlist" component={wishlistList} />
         <Stack.Screen name="Carts" component={CartDisplay} />
       </Stack.Navigator>

@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  ToastAndroid,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -65,13 +66,25 @@ const WishScreen = () => {
 
                 <TouchableOpacity
                   style={styles.removeBtn}
-                  onPress={() => removeItem(item.id)}
+                  onPress={() => {
+                    ToastAndroid.showWithGravity(
+                      "Item removed",
+                      ToastAndroid.SHORT,
+                      ToastAndroid.BOTTOM,
+                    );
+                    removeItem(item.id);
+                  }}
                 >
                   <Ionicons name="close-outline" size={24} color="black" />
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.addtocart}
                   onPress={async () => {
+                    ToastAndroid.showWithGravity(
+                      "Item added to cart",
+                      ToastAndroid.SHORT,
+                      ToastAndroid.BOTTOM,
+                    );
                     await addToCart({
                       id: item.id,
                       title: item.title,

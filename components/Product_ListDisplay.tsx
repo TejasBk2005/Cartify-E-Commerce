@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "@react-navigation/native";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
@@ -35,7 +35,6 @@ const ProductItem = ({ item }: { item: any }) => {
     <Link screen="ProductDetails" params={{ productId: item.id }}>
       <View style={styles.card}>
         <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
-
         <TouchableOpacity style={styles.heartbtn} onPress={toggleWishList}>
           <Ionicons
             name={liked ? "heart" : "heart-outline"}
@@ -43,15 +42,12 @@ const ProductItem = ({ item }: { item: any }) => {
             color={liked ? "red" : "gray"}
           />
         </TouchableOpacity>
-
         <Text style={styles.rating}>
           {item.rating}
           <Ionicons name="star" size={14} color="green" />
         </Text>
-
         <Text style={styles.brand}>{item.brand}</Text>
         <Text style={styles.title}>{item.title}</Text>
-
         <Text style={styles.price}>
           {"\u20B9"} {item.price}
         </Text>
@@ -96,13 +92,16 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontWeight: "bold",
     fontSize: 17,
+    top: 10,
   },
 
   title: {
     padding: -30,
     textAlign: "left",
     fontSize: 15,
-    fontWeight: "400",
+    fontWeight: "600",
+    color: "gray",
+    top: 5,
   },
   rating: {
     textAlign: "left",

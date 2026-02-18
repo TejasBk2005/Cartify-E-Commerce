@@ -34,7 +34,7 @@ export const decreaseQty = async (id: number) => {
   const cart = await getCartItems();
   const updated = cart
     .map((item: any) =>
-      item.id === id ? { ...item, quatity: item.quantity - 1 } : item,
+      item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
     )
     .filter((item: any) => item.quantity > 0);
   await AsyncStorage.setItem(CART_DATA, JSON.stringify(updated));

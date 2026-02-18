@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import {
@@ -15,6 +16,7 @@ import {
   decreaseQty,
 } from "../Utils/Cart_List";
 import { Ionicons } from "@expo/vector-icons";
+import { Checkbox } from "expo-checkbox";
 
 const CartDisplay = () => {
   const [cart, setCart] = useState<any[]>([]);
@@ -48,6 +50,15 @@ const CartDisplay = () => {
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.price}>₹ {item.price}</Text>
                 <View style={styles.qtyRow}>
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      margin: 5,
+                      fontSize: 17,
+                    }}
+                  >
+                    Qty
+                  </Text>
                   <TouchableOpacity
                     onPress={async () => {
                       await decreaseQty(item.id);
@@ -69,6 +80,11 @@ const CartDisplay = () => {
                 <TouchableOpacity
                   style={styles.rBTN}
                   onPress={async () => {
+                    ToastAndroid.showWithGravity(
+                      "Item removed",
+                      ToastAndroid.SHORT,
+                      ToastAndroid.BOTTOM,
+                    );
                     await removeFromCart(item.id);
                     loadCart();
                   }}
@@ -82,6 +98,12 @@ const CartDisplay = () => {
           )}
         />
       )}
+      <View style={styles.bottomcard}>
+        <Text style={styles.totaltxt}> Total : </Text>
+        <TouchableOpacity style={styles.poBtn}>
+          <Text style={styles.poTxt}>Place order</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -95,8 +117,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 5,
     borderRadius: 12,
-    marginBottom: 15,
+    marginBottom: 5,
     margin: 10,
+    height: 120,
   },
 
   image: {
@@ -104,21 +127,15 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 10,
     marginRight: 10,
+    marginLeft: 5,
     backgroundColor: "lightgray",
   },
   brand: { fontSize: 18, fontWeight: "500" },
 
   title: { fontSize: 15, color: "gray" },
 
-  price: { fontSize: 15, fontWeight: "bold", marginTop: 5 },
+  price: { fontSize: 18, fontWeight: "bold", marginTop: 5 },
 
-  qty: {
-    marginTop: 4,
-    fontSize: 16,
-    left: 225,
-    bottom: 40,
-    color: "green",
-  },
   qtyRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -127,30 +144,61 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   qtyBtn: {
-    fontSize: 20,
-    paddingHorizontal: 10,
+    fontSize: 16,
     backgroundColor: "white",
-    borderRadius: 5,
+    borderRadius: 4,
     borderStyle: "solid",
     borderWidth: 1,
+    width: 20,
+    height: 20,
+    justifyContent: "center",
+    textAlign: "center",
+    alignContent: "center",
   },
   qtyText: {
     marginHorizontal: 10,
     fontSize: 16,
     fontWeight: "bold",
+    textAlign: "center",
+    color: "green",
   },
 
   rBTN: {
     borderStyle: "solid",
     borderWidth: 1,
-    width: 80,
-    height: 30,
+    width: 65,
+    height: 25,
     borderRadius: 6,
     marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
     left: 200,
-    bottom: 35,
+    bottom: 43,
+  },
+  totaltxt: {
+    fontSize: 20,
+    textAlign: "left",
+    top: 20,
+    left: 10,
+  },
+  bottomcard: {
+    backgroundColor: "white",
+    marginBottom: 15,
+    padding: 5,
+  },
+
+  poBtn: {
+    width: 140,
+    height: 40,
+    backgroundColor: "gold",
+    justifyContent: "center",
+    borderRadius: 5,
+    left: 250,
+    bottom: 10,
+  },
+  poTxt: {
+    fontSize: 20,
+    textAlign: "center",
   },
 });
 export default CartDisplay;

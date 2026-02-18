@@ -40,8 +40,7 @@ const Login = ({ navigation }: any) => {
             style={styles.skip1}
             onPress={() => navigation.navigate("Cartify")}
           >
-            {" "}
-            Skip▶{" "}
+            Skip▶
           </Text>
         </TouchableOpacity>
       </View>
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "lightgray",
+    backgroundColor: "white",
   },
   input: {
     height: 60,
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
   button: {
     left: 170,
     bottom: 550,
-    backgroundColor: "white",
+    backgroundColor: "lightgray",
     justifyContent: "center",
     borderRadius: 25,
     width: 65,

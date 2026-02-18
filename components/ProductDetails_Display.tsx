@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { addToCart } from "../Utils/Cart_List";
 
@@ -23,6 +30,11 @@ const detailsrenderItem = ({ item }: { item: any }) => {
       <TouchableOpacity
         style={styles.addToCartBtn}
         onPress={async () => {
+          ToastAndroid.showWithGravity(
+            "Item added to cart",
+            ToastAndroid.SHORT,
+            ToastAndroid.BOTTOM,
+          );
           await addToCart({
             id: item.id,
             title: item.title,

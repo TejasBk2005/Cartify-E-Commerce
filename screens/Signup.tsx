@@ -19,11 +19,11 @@ const SignUp = ({ navigation }: any) => {
       <Image
         source={require("../assets/logo.jpg")}
         style={{
-          width: 70,
-          height: 70,
+          width: 80,
+          height: 80,
           bottom: -150,
           borderRadius: 20,
-          left: 150,
+          left: 155,
         }}
       />
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -76,9 +76,9 @@ const SignUp = ({ navigation }: any) => {
         <TouchableOpacity style={styles.button}>
           <Text
             style={styles.skip1}
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => navigation.navigate("Cartify")}
           >
-            Skip▶{" "}
+            Skip ▶
           </Text>
         </TouchableOpacity>
       </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: "center",
-    backgroundColor: "lightgray",
+    backgroundColor: "white",
     color: "white",
   },
   title: {
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   button: {
     left: 170,
     bottom: 620,
-    backgroundColor: "white",
+    backgroundColor: "lightgray",
     width: "17%",
     height: "3.3%",
     justifyContent: "center",
