@@ -1,7 +1,22 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
+import { useNetInfo } from "@react-native-community/netinfo";
+import ShimmerPlaceholder, {
+  ShimmerPlaceholderProps,
+} from "react-native-shimmer-placeholder";
+import LinearGradient, {
+  LinearGradientProps,
+} from "react-native-linear-gradient";
+
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "@react-navigation/native";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
 
 import {
   addToWishList,
@@ -30,12 +45,30 @@ const ProductItem = ({ item }: { item: any }) => {
       setLiked(true);
     }
   };
+  const shimmerCard = () => {
+    return (
+      <View>
+        <ShimmerPlaceholder LinearGradient={LinearGradient} />
+      </View>
+    );
+  };
 
   return (
     <Link screen="ProductDetails" params={{ productId: item.id }}>
       <View style={styles.card}>
         <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
-        <TouchableOpacity style={styles.heartbtn} onPress={toggleWishList}>
+
+        <TouchableOpacity
+          style={styles.heartbtn}
+          onPress={toggleWishList}
+          onPressIn={() => {
+            ToastAndroid.showWithGravity(
+              liked ? "Item removed" : "Item added to wishlist",
+              ToastAndroid.BOTTOM,
+              ToastAndroid.SHORT,
+            );
+          }}
+        >
           <Ionicons
             name={liked ? "heart" : "heart-outline"}
             size={22}

@@ -35,7 +35,7 @@ const CategoriesList = () => {
   const visibleData = showAll ? data : data.slice(0, 8);
 
   return (
-    <View style={styles.card}>
+    <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
@@ -45,7 +45,7 @@ const CategoriesList = () => {
             keyExtractor={(data, index) => index.toString()}
             renderItem={categoriesItems}
             numColumns={4}
-            showsVerticalScrollIndicator={false}
+            //showsVerticalScrollIndicator={false}
           />
 
           {data.length > 8 && (
@@ -64,6 +64,9 @@ const CategoriesList = () => {
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   card: {
     flex: 1,
     justifyContent: "center",

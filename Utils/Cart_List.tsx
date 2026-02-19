@@ -42,8 +42,6 @@ export const decreaseQty = async (id: number) => {
 
 export const removeFromCart = async (id: number) => {
   const cart = await getCartItems();
-
   const updated = cart.filter((item: any) => item.id !== id);
-
   await AsyncStorage.setItem(CART_DATA, JSON.stringify(updated));
 };

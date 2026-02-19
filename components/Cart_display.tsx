@@ -16,7 +16,6 @@ import {
   decreaseQty,
 } from "../Utils/Cart_List";
 import { Ionicons } from "@expo/vector-icons";
-import { Checkbox } from "expo-checkbox";
 
 const CartDisplay = () => {
   const [cart, setCart] = useState<any[]>([]);
@@ -30,6 +29,12 @@ const CartDisplay = () => {
   const loadCart = async () => {
     const data = await getCartItems();
     setCart(data);
+  };
+  const getToatalAmount = () => {
+    return cart.reduce(
+      (total: number, item: any) => total + item.price * item.quantity,
+      0,
+    );
   };
 
   return (
@@ -98,8 +103,9 @@ const CartDisplay = () => {
           )}
         />
       )}
+
       <View style={styles.bottomcard}>
-        <Text style={styles.totaltxt}> Total : </Text>
+        <Text style={styles.totaltxt}> Total : {getToatalAmount()} </Text>
         <TouchableOpacity style={styles.poBtn}>
           <Text style={styles.poTxt}>Place order</Text>
         </TouchableOpacity>
@@ -184,6 +190,7 @@ const styles = StyleSheet.create({
   bottomcard: {
     backgroundColor: "white",
     marginBottom: 15,
+    //marginTop: 730,
     padding: 5,
   },
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { ActivityIndicator } from "react-native";
 
 import ProductItem from "./Product_ListDisplay";
@@ -8,10 +8,11 @@ const productsURL = "https://dummyjson.com/products";
 
 const ProductList = () => {
   const [data, setData] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   const getProducts = async () => {
     try {
+      setLoading(true);
       const response = await fetch(productsURL);
       const data = await response.json();
       setData(data.products);

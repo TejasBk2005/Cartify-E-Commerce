@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { ActivityIndicator } from "react-native";
 import { FlatList } from "react-native";
+import ShimmerPlaceholder, {
+  ShimmerPlaceholderProps,
+} from "react-native-shimmer-placeholder";
+import LinearGradient, {
+  LinearGradientProps,
+} from "react-native-linear-gradient";
 import detailsrenderItem from "./ProductDetails_Display";
 
 const productDetailsURL = "https://dummyjson.com/products/";
@@ -26,6 +32,14 @@ const ProductDetails = ({ route }: any) => {
   useEffect(() => {
     getProductDetails();
   }, []);
+
+  const shimmerCard = () => {
+    return (
+      <View>
+        <ShimmerPlaceholder LinearGradient={LinearGradient} />
+      </View>
+    );
+  };
 
   return (
     <View style={styles.container}>

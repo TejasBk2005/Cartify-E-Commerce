@@ -16,17 +16,35 @@ const SignUp = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.button}>
+        <Text
+          style={styles.skip1}
+          onPress={() => navigation.navigate("Cartify")}
+        >
+          Skip ▶
+        </Text>
+      </TouchableOpacity>
       <Image
         source={require("../assets/logo.jpg")}
         style={{
-          width: 80,
-          height: 80,
-          bottom: -150,
-          borderRadius: 20,
-          left: 155,
+          width: 120,
+          height: 120,
+          // bottom: -50,
+          borderRadius: 50,
+          // left: 120,
+          alignItems: "center",
+          alignSelf: "center",
+          marginTop: 20,
         }}
       />
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+
+      <View
+        style={{
+          flex: 1,
+          marginTop: 20,
+          // justifyContent: "center", alignItems: "center"
+        }}
+      >
         <TextInput
           style={styles.input}
           placeholder="Name"
@@ -72,15 +90,6 @@ const SignUp = ({ navigation }: any) => {
             Login
           </Text>
         </Text>
-
-        <TouchableOpacity style={styles.button}>
-          <Text
-            style={styles.skip1}
-            onPress={() => navigation.navigate("Cartify")}
-          >
-            Skip ▶
-          </Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -90,7 +99,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    justifyContent: "center",
+    // justifyContent: "center",
     backgroundColor: "white",
     color: "white",
   },
@@ -115,24 +124,28 @@ const styles = StyleSheet.create({
   input1: {
     backgroundColor: "skyblue",
     padding: 10,
-    marginVertical: 5,
+    marginVertical: 15,
     borderRadius: 25,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
   button: {
-    left: 170,
-    bottom: 620,
+    // left: 150,
+    // bottom: 550,
     backgroundColor: "lightgray",
-    width: "17%",
-    height: "3.3%",
-    justifyContent: "center",
+    // width: "17%",
+    // height: "3.3%",
+    justifyContent: "flex-end",
     borderRadius: 25,
+    alignContent: "flex-end",
+    alignSelf: "flex-end",
+    top: 10,
+    padding: 10,
   },
   skip1: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
     color: "black",
     alignItems: "center",
