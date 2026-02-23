@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNetInfo } from "@react-native-community/netinfo";
-import ShimmerPlaceholder, {
-  ShimmerPlaceholderProps,
-} from "react-native-shimmer-placeholder";
-import LinearGradient, {
-  LinearGradientProps,
-} from "react-native-linear-gradient";
+
+import { LinearGradient } from "expo-linear-gradient";
+import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "@react-navigation/native";
@@ -24,11 +20,17 @@ import {
   isInWishList,
 } from "../Utils/Wish_List";
 
+const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient);
+
 const ProductItem = ({ item }: { item: any }) => {
   const [liked, setLiked] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     checkWishList();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
   }, []);
 
   const checkWishList = async () => {
@@ -45,18 +47,18 @@ const ProductItem = ({ item }: { item: any }) => {
       setLiked(true);
     }
   };
-  const shimmerCard = () => {
-    return (
-      <View>
-        <ShimmerPlaceholder LinearGradient={LinearGradient} />
-      </View>
-    );
-  };
 
   return (
     <Link screen="ProductDetails" params={{ productId: item.id }}>
       <View style={styles.card}>
-        <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
+        {loading ? (
+          <ShimmerPlaceHolder
+            style={styles.thumbnail}
+            shimmerColors={["#ebebeb", "#c5c5c5", "#ebebeb"]}
+          />
+        ) : (
+          <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
+        )}
 
         <TouchableOpacity
           style={styles.heartbtn}
@@ -79,11 +81,32 @@ const ProductItem = ({ item }: { item: any }) => {
           {item.rating}
           <Ionicons name="star" size={14} color="green" />
         </Text>
-        <Text style={styles.brand}>{item.brand}</Text>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.price}>
-          {"\u20B9"} {item.price}
-        </Text>
+        {loading ? (
+          <ShimmerPlaceHolder
+            style={styles.shimmerbrand}
+            shimmerColors={["#ebebeb", "#c5c5c5", "#ebebeb"]}
+          />
+        ) : (
+          <Text style={styles.brand}>{item.brand}</Text>
+        )}
+        {loading ? (
+          <ShimmerPlaceHolder
+            style={styles.shimmertitle}
+            shimmerColors={["#ebebeb", "#c5c5c5", "#ebebeb"]}
+          />
+        ) : (
+          <Text style={styles.title}>{item.title}</Text>
+        )}
+        {loading ? (
+          <ShimmerPlaceHolder
+            style={styles.shimmerprice}
+            shimmerColors={["#ebebeb", "#c5c5c5", "#ebebeb"]}
+          />
+        ) : (
+          <Text style={styles.price}>
+            {"\u20B9"} {item.price}
+          </Text>
+        )}
       </View>
     </Link>
   );
@@ -155,6 +178,16 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
+  },
+  shimmerprice: {
+    width: "100%",
+    top: 10,
+  },
+  shimmerbrand: {
+    width: "100%",
+  },
+  shimmertitle: {
+    width: "100%",
   },
 });
 export default ProductItem;
