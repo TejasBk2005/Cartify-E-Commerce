@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -13,6 +14,7 @@ const SignUp = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
+  //const { SignUp } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -21,22 +23,15 @@ const SignUp = ({ navigation }: any) => {
           style={styles.skip1}
           onPress={() => navigation.navigate("Cartify")}
         >
-          Skip ▶
+          Skip
         </Text>
+        <Ionicons
+          name="play-skip-forward-outline"
+          size={15}
+          style={{ justifyContent: "flex-end", marginLeft: 5 }}
+        />
       </TouchableOpacity>
-      <Image
-        source={require("../assets/logo.jpg")}
-        style={{
-          width: 120,
-          height: 120,
-          // bottom: -50,
-          borderRadius: 50,
-          // left: 120,
-          alignItems: "center",
-          alignSelf: "center",
-          marginTop: 20,
-        }}
-      />
+      <Image source={require("../assets/logo.jpg")} style={styles.img} />
 
       <View
         style={{
@@ -81,8 +76,7 @@ const SignUp = ({ navigation }: any) => {
         </TouchableOpacity>
 
         <Text style={{ textAlign: "center", marginTop: 20, fontSize: 16 }}>
-          {" "}
-          Do you have an account?{" "}
+          Do you have an account?
           <Text
             style={{ color: "blue", textDecorationLine: "underline" }}
             onPress={() => navigation.navigate("Login")}
@@ -102,6 +96,16 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     backgroundColor: "white",
     color: "white",
+  },
+  img: {
+    width: 120,
+    height: 120,
+    // bottom: -50,
+    borderRadius: 50,
+    // left: 120,
+    alignItems: "center",
+    alignSelf: "center",
+    marginTop: 20,
   },
   title: {
     fontSize: 30,
@@ -142,14 +146,16 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     top: 10,
     padding: 10,
+    flexDirection: "row",
   },
   skip1: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "bold",
     color: "black",
     alignItems: "center",
     justifyContent: "center",
+    alignSelf: "center",
   },
 });
 
