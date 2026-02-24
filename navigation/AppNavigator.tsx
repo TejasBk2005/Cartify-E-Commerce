@@ -8,11 +8,10 @@ import { View } from "react-native";
 import Signup from "../screens/Signup";
 import Login from "../screens/Login";
 import BottomTabNavigator from "./Bottom_Tabs";
-import searchItems from "../components/Search_Items";
 import ProductDetails from "../components/Product_DetailsAPI";
 import wishlistList from "../components/WishList_Display";
-
 import CartDisplay from "../components/Cart_display";
+import searchItems from "../components/Search_Items";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +26,7 @@ const AppNavigator = () => {
       >
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} />
+
         <Stack.Screen
           name="Cartify"
           component={BottomTabNavigator}
@@ -35,11 +35,13 @@ const AppNavigator = () => {
             headerStyle: {
               backgroundColor: "skyblue",
             },
+
             headerTintColor: "black",
             headerTitleStyle: {
               fontWeight: "bold",
               fontSize: 25,
             },
+            headerBackVisible: false,
 
             headerRight: () => (
               <View style={{ flexDirection: "row", gap: 20 }}>
