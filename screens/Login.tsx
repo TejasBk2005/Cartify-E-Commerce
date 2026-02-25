@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -7,8 +7,20 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { AuthContext } from "../components/Context";
 
 const Login = ({ navigation }: any) => {
+  const { LogIn } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailPattren = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const handleLogIn = () => {
+    if (!email || !password) {
+      alert("All fields are required");
+      return;
+    }
+  };
   return (
     <View style={styles.container}>
       <Image

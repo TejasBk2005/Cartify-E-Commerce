@@ -44,7 +44,7 @@ const ProductDetails = ({ route }: any) => {
   return (
     <View style={styles.container}>
       {isLoading ? (
-        <ActivityIndicator />
+        <ActivityIndicator style={{ justifyContent: "center" }} />
       ) : (
         <FlatList
           data={data}

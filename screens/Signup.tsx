@@ -8,13 +8,37 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
+import { AuthContext } from "../components/Context";
 
 const SignUp = ({ navigation }: any) => {
+  const { Signup } = useContext(AuthContext);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  //const { SignUp } = useContext(AuthContext);
+
+  const EmailPattren = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const PasswordPattren = /^(?=.*[0-9]).{6,}$/;
+
+  const handleSignup = () => {
+    if (!name || !email || !password || !confirmedPassword) {
+      alert("All fields are required");
+      return;
+    }
+    if (!EmailPattren.test(email)) {
+      alert("Enter valid email");
+      return;
+    }
+    if (!PasswordPattren.test(password)) {
+      alert("Password must be 6 character and contains 1 number");
+      return;
+    }
+    if (password !== confirmedPassword) {
+      alert("Password do not match");
+      return;
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -67,7 +91,7 @@ const SignUp = ({ navigation }: any) => {
           secureTextEntry
         />
 
-        <TouchableOpacity style={styles.input1}>
+        <TouchableOpacity style={styles.input1} onPress={handleSignup}>
           <Text
             style={{ textAlign: "center", fontWeight: "bold", fontSize: 18 }}
           >
