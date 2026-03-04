@@ -1,11 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Logout from "./LogOut";
 
 const Account = () => {
   return (
     <View style={styles.container}>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text style={styles.title}>PROFILE</Text>
+
+        <Logout />
       </View>
     </View>
   );

@@ -11,29 +11,34 @@ import Signup from "../screens/Signup";
 import Login from "../screens/Login";
 import BottomTabNavigator from "./Bottom_Tabs";
 import ProductDetails from "../components/Product_DetailsAPI";
-import wishlistList from "../components/WishList_Display";
-import CartDisplay from "../components/Cart_display";
-import searchItems from "../components/Search_Items";
-import { AuthContext } from "../components/Context";
+import wishlistList from "../screens/WishList_Display";
+import CartDisplay from "../screens/Cart_display";
+import SearchItems from "../components/Search_API";
+import { AuthContext } from "../Context/Context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [userToken, setUserToken] = useState(null);
+  const [userToken, setUserToken] = useState<string | null>(null);
 
   const authContext = useMemo(
     () => ({
-      Signup: async () => {
-        let token = "cartify";
+      SignUp: async () => {
+        let token = "cartifytoken";
         await AsyncStorage.setItem("userToken", token);
         setUserToken(token);
       },
-      Login: async () => {
-        let token = "cartify";
+
+      LogIn: async () => {
+        let token = "cartifytoken";
         await AsyncStorage.setItem("userToken", token);
         setUserToken(token);
+      },
+      LogOut: async () => {
+        await AsyncStorage.removeItem("userToken");
+        setUserToken(null);
       },
     }),
     [],
@@ -108,7 +113,7 @@ const AppNavigator = () => {
                   ),
                 })}
               />
-              <Stack.Screen name="Search" component={searchItems} />
+              <Stack.Screen name="Search" component={SearchItems} />
               <Stack.Screen
                 name="ProductDetails"
                 component={ProductDetails}

@@ -1,46 +1,74 @@
-import React, { useState } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
 
-const searchItems = () => {
-  const [search, setSearch] = useState("");
+const searchItem = ({ item }: { item: any }) => {
   return (
-    <View style={styles.s1}>
-      <View style={styles.searchContainer}>
-        <Ionicons name="search" size={28}>
-          <TextInput
-            placeholder="Search"
-            value={search}
-            onChangeText={setSearch}
-            style={styles.searchinput}
-          ></TextInput>
-        </Ionicons>
+    <View style={styles.card}>
+      <Image source={{ uri: item.thumbnail }} style={styles.image} />
+      <View style={styles.text}>
+        <Text style={styles.brand}>{item.brand}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+
+        <Text style={styles.price}>
+          {"\u20B9"} {item.price}
+        </Text>
       </View>
     </View>
   );
 };
 
-export default searchItems;
 const styles = StyleSheet.create({
-  container: {
+  card: {
+    flex: 1,
+    flexDirection: "row",
     padding: 10,
-    flex: 1,
-  },
-  searchContainer: {
-    padding: 20,
-    marginLeft: -5,
-  },
-  searchinput: {
+    width: "100%",
+    height: 150,
     backgroundColor: "white",
-    paddingLeft: 10,
+    alignItems: "flex-start",
+    marginBottom: 10,
     borderRadius: 10,
-    borderStyle: "solid",
-    borderColor: "black",
-    borderWidth: 1,
-    width: "90%",
-    height: 50,
   },
-  s1: {
+
+  image: {
+    width: 125,
+    height: 125,
+    borderRadius: 10,
+    backgroundColor: "lightgray",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
     flex: 1,
+    top: 5,
+    margin: 5,
+  },
+
+  title: {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginBottom: 5,
+    alignItems: "flex-start",
+  },
+  brand: {
+    fontSize: 18,
+    color: "gray",
+    alignItems: "flex-start",
+  },
+  price: {
+    flexDirection: "row",
+    fontSize: 15,
+    fontWeight: "bold",
+    //textAlign: "right",
+    marginBottom: 10,
   },
 });
+
+export default searchItem;

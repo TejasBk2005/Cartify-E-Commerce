@@ -94,9 +94,8 @@ const CartDisplay = () => {
                     loadCart();
                   }}
                 >
-                  <Ionicons name="trash">
-                    <Text>Remove</Text>
-                  </Ionicons>
+                  <Ionicons name="trash"></Ionicons>
+                  <Text> Remove</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -105,7 +104,7 @@ const CartDisplay = () => {
       )}
 
       <View style={styles.bottomcard}>
-        <Text style={styles.totaltxt}> Total : {getToatalAmount()} </Text>
+        <Text style={styles.totaltxt}>Total : ₹ {getToatalAmount()}</Text>
         <TouchableOpacity style={styles.poBtn}>
           <Text style={styles.poTxt}>Place order</Text>
         </TouchableOpacity>
@@ -170,9 +169,10 @@ const styles = StyleSheet.create({
   },
 
   rBTN: {
+    flexDirection: "row",
     borderStyle: "solid",
     borderWidth: 1,
-    width: 65,
+    width: 70,
     height: 25,
     borderRadius: 6,
     marginTop: 10,

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { AuthContext } from "../components/Context";
+import { AuthContext } from "../Context/Context";
 
 const Login = ({ navigation }: any) => {
   const { LogIn } = useContext(AuthContext);
@@ -20,6 +20,13 @@ const Login = ({ navigation }: any) => {
       alert("All fields are required");
       return;
     }
+    if (!emailPattren.test(email)) {
+      alert("Enter the valid email");
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 character");
+    }
+    LogIn();
   };
   return (
     <View style={styles.container}>
@@ -42,13 +49,18 @@ const Login = ({ navigation }: any) => {
           //margin: 5, //justifyContent: "center", alignItems: "center"
         }}
       >
-        <TextInput placeholder="Email" style={styles.input} />
+        <TextInput
+          placeholder="Email"
+          style={styles.input}
+          onChangeText={setEmail}
+        />
         <TextInput
           placeholder="Password"
           secureTextEntry={true}
           style={styles.input}
+          onChangeText={setPassword}
         />
-        <TouchableOpacity style={styles.login}>
+        <TouchableOpacity style={styles.login} onPress={handleLogIn}>
           <Text
             style={{ textAlign: "center", fontWeight: "bold", fontSize: 18 }}
           >

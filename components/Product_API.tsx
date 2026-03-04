@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import { View, FlatList, StyleSheet, RefreshControl } from "react-native";
 import { ActivityIndicator } from "react-native";
 
-import ProductItem from "./Product_ListDisplay";
+import ProductItem from "../screens/Product_ListDisplay";
 
 const productsURL = "https://dummyjson.com/products";
 
 const ProductList = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(true);
 
   const getProducts = async () => {
     try {
@@ -22,6 +23,10 @@ const ProductList = () => {
       setLoading(false);
     }
   };
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    getProducts().finally(() => setRefreshing(false));
+  }, []);
 
   useEffect(() => {
     getProducts();
@@ -36,6 +41,9 @@ const ProductList = () => {
           data={data}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => <ProductItem item={item} />}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           numColumns={2}
           contentContainerStyle={{ padding: 10 }}
           columnWrapperStyle={{

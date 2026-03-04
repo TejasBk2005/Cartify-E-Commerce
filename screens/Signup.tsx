@@ -8,10 +8,10 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { AuthContext } from "../components/Context";
+import { AuthContext } from "../Context/Context";
 
 const SignUp = ({ navigation }: any) => {
-  const { Signup } = useContext(AuthContext);
+  const { SignUp } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,6 +38,7 @@ const SignUp = ({ navigation }: any) => {
       alert("Password do not match");
       return;
     }
+    SignUp();
   };
 
   return (

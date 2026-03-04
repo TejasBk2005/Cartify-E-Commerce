@@ -8,8 +8,8 @@ import Account from "../screens/Account";
 
 import HomeScreen from "../screens/Home";
 import ShopScreen from "../screens/Shop";
-import Search_Items from "../components/Search_Items";
-import searchItems from "../components/Search_Items";
+import Search_Items from "../components/Search_API";
+import SearchItems from "../components/Search_API";
 
 //import SearchItems from "../components/Search_API";
 
@@ -49,7 +49,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Search"
-        component={searchItems}
+        component={SearchItems}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
