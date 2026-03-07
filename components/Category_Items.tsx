@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
-import categoryIcons from "./Category_Icons";
+import categoryIcons from "../Icons/Category_Icons";
 
 const categoriesItems = ({ item }: { item: any }) => {
   return (

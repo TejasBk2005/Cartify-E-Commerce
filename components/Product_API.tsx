@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, FlatList, StyleSheet, RefreshControl } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { ActivityIndicator } from "react-native";
 
 import ProductItem from "../screens/Product_ListDisplay";
 
-const productsURL = "https://dummyjson.com/products";
+const PRODUCT_URL = "https://dummyjson.com/products";
 
 const ProductList = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const [refreshing, setRefreshing] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const getProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(productsURL);
+      const response = await fetch(PRODUCT_URL);
       const data = await response.json();
       setData(data.products);
     } catch (error) {
@@ -23,13 +23,22 @@ const ProductList = () => {
       setLoading(false);
     }
   };
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    getProducts().finally(() => setRefreshing(false));
-  }, []);
 
   useEffect(() => {
     getProducts();
+  }, []);
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetch(PRODUCT_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data.products);
+        setRefreshing(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setRefreshing(false);
+      });
   }, []);
 
   return (
@@ -41,9 +50,8 @@ const ProductList = () => {
           data={data}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => <ProductItem item={item} />}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
+          refreshing={refreshing}
+          onRefresh={onRefresh}
           numColumns={2}
           contentContainerStyle={{ padding: 10 }}
           columnWrapperStyle={{
