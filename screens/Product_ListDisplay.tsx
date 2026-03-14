@@ -23,6 +23,7 @@ import {
 const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient);
 
 const ProductItem = ({ item }: { item: any }) => {
+
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -47,6 +48,8 @@ const ProductItem = ({ item }: { item: any }) => {
       setLiked(true);
     }
   };
+
+  
 
   return (
     <Link screen="ProductDetails" params={{ productId: item.id }}>

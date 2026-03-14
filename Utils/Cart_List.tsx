@@ -9,10 +9,8 @@ export const getCartItems = async () => {
 
 export const addToCart = async (product: any) => {
   const cart = await getCartItems();
-
   const exists = cart.find((item: any) => item.id === product.id);
-
-  if (exists) {
+if (exists) {
     const updated = cart.map((item: any) =>
       item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item,
     );

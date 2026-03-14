@@ -1,20 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import categoryIcons from "../Icons/Category_Icons";
 
-const categoriesItems = ({ item }: { item: any }) => {
+const CategoriesItem = ({ item }: { item: any }) => {
+
+  const navigation: any = useNavigation();
+
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() =>
+        navigation.navigate("CategoryProducts", { categoryname: item.slug })
+      }
+    >
       {categoryIcons[item.slug as keyof typeof categoryIcons] || (
         <MaterialIcons name="category" size={40} color="black" />
       )}
+
       <Text style={styles.name}>{item.name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
-
 const styles = StyleSheet.create({
   card: {
     //flexDirection:"column",
@@ -45,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default categoriesItems;
+export default CategoriesItem;

@@ -17,6 +17,8 @@ import SearchItems from "../components/Search_API";
 import { AuthContext } from "../Context/Context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import ProductList from "../components/Product_API";
+
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -74,6 +76,7 @@ const AppNavigator = () => {
             <>
               <Stack.Screen name="Signup" component={Signup} />
               <Stack.Screen name="Login" component={Login} />
+              
             </>
           ) : (
             <>
@@ -145,6 +148,7 @@ const AppNavigator = () => {
 
               <Stack.Screen name="Wishlist" component={wishlistList} />
               <Stack.Screen name="Carts" component={CartDisplay} />
+             <Stack.Screen name="CategoryProducts" component={ProductList}/>
             </>
           )}
         </Stack.Navigator>

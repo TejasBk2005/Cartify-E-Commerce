@@ -4,8 +4,6 @@ import {
   Text,
   StyleSheet,
   Image,
-  TouchableOpacity,
-  ToastAndroid,
 } from "react-native";
 
 const searchItem = ({ item }: { item: any }) => {

@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, TextInput, Text } from "react-native";
-
+import { View, StyleSheet, ScrollView, TextInput } from "react-native";
 import CategoriesList from "../components/Category_Lists";
 import { Ionicons } from "@expo/vector-icons";
 import CarouselBanner from "../components/Banner_Items";

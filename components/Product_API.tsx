@@ -1,16 +1,48 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { ActivityIndicator } from "react-native";
+import categoryname from "../components/Category_Items"
+
 
 import ProductItem from "../screens/Product_ListDisplay";
 
 const PRODUCT_URL = "https://dummyjson.com/products";
+//const CATEGORY_URL = "https://dummyjson.com/products/category/"
 
-const ProductList = () => {
+const ProductList = ({ route } : any ) => {
+
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  console.log("error",route);
+  
+  const categoryname = route?.params?.categoryname;
+  
 
+ //const categoryname = "smartphones"
+  useEffect (() => {
+    if (categoryname){
+  getCategoryProduct(categoryname);
+  }
+else{
+
+    getProducts();}
+  }, [categoryname]);
+
+  const getCategoryProduct = async ( categoryname : string ) => {
+    try{
+      setLoading(true)
+      const response = await fetch( `https://dummyjson.com/products/category/${categoryname}`);
+      const data = await response.json();
+      console.log("data", data)
+      setData(data.products);
+    } catch (e) {
+      console.log("error", e);
+    } finally{
+      setLoading(false);
+
+    }
+  }
   const getProducts = async () => {
     try {
       setLoading(true);
@@ -24,9 +56,9 @@ const ProductList = () => {
     }
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+  
+
+  
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     fetch(PRODUCT_URL)

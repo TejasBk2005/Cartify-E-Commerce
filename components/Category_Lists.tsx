@@ -8,7 +8,7 @@ import {
   Text,
 } from "react-native";
 
-import categoriesItems from "./Category_Items";
+import CategoriesItem from "./Category_Items";
 
 const homeURL = "https://dummyjson.com/products/categories";
 
@@ -42,8 +42,8 @@ const CategoriesList = () => {
         <View style={styles.card}>
           <FlatList
             data={visibleData}
-            keyExtractor={(data, index) => index.toString()}
-            renderItem={categoriesItems}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => <CategoriesItem item={item} />}
             numColumns={4}
             //showsVerticalScrollIndicator={false}
           />
