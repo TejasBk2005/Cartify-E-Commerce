@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 import categoryIcons from "../Icons/Category_Icons";
 
 const CategoriesItem = ({ item }: { item: any }) => {
-
   const navigation: any = useNavigation();
 
   return (
